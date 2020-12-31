@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wall</title>
+</head>
+<body>
+    <h1> Welcome: {{ first_name }} {{ last_name }} </h1>
+    <a style="float: right;" href="/logout">Logout</a>
+    <br>
+    <hr>
+    <form action="/add_mesg" method="post">
+        {% csrf_token %}
+        <h1>Post a message</h1>
+        <textarea name="mesg"></textarea>
+        <br>
+        <input type="submit" value="Post a message">
+    </form>
+    <hr>
+    {% for id, full_mesg in  mesgs.items %}
+        <h4> {{ full_mesg.mesg.user_id.first_name }} {{ full_mesg.mesg.user_id.last_name }} - {{ full_mesg.mesg.created_at }}</h4>
+        <p> {{ full_mesg.mesg.message }} </p>
+        {% for comment in  full_mesg.comments %}
+            <h6> {{comment.user_id.first_name}} {{comment.user_id.last_name}} - {{comment.created_at}}</h6>
+            <p>{{comment.comment}}</p>
+        {% endfor %}
+        <form action="/add_comment/{{id}}" method="post">
+            {% csrf_token %}
+            <textarea name="comment"></textarea>
+            <br>
+            <input type="submit" value="Add a Comment">
+        </form>
+    {% endfor %}
+</body>
+</html>

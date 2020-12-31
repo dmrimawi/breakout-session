@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <style>
+        .login {
+            float: right;
+        }
+        
+        .register {
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="register">
+        <form action="/register" method="POST">
+            {% csrf_token %}
+            <label for="first_name">First Name: </label>
+            <br>
+            <input type="text" id="first_name" name="first_name">
+            <br>
+            <label for="last_name">Last Name: </label>
+            <br>
+            <input type="text" id="last_name" name="last_name">
+            <br>
+            <label for="email">Email: </label>
+            <br>
+            <input type="text" id="email" name="email">
+            <br>
+            <label for="password">Password: </label>
+            <br>
+            <input type="password" id="password" name="password">
+            <br>
+            <label for="confirm">Confirm Password: </label>
+            <br>
+            <input type="password" id="confirm" name="confirm">
+            <br>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+    <div class="login">
+        <form action="/login" method="POST">
+            {% csrf_token %}
+            <label for="email">Email: </label>
+            <br>
+            <input type="text" id="email1" name="email">
+            <br>
+            <label for="password">Password: </label>
+            <br>
+            <input type="password" id="password1" name="password">
+            <br>
+            <input type="submit" value="Log In">
+        </form>
+    </div>
+</body>
+
+</html>
